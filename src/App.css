@@ -1,16 +1,5 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-.cam{
-  background-color: red;
-  position:absolute;
-  top: 20%;
-  left: 30%;
-}
-canvas {
+
+canvas , .webcam {
   /* background-color: black; */
   position: absolute;
   margin-left: auto;
@@ -19,8 +8,8 @@ canvas {
   right: 0;
   text-align: center;
   z-index: 9;
-  width: 640px; /* Specify the unit (e.g., pixels) */
-  height: 480px; /* Specify the unit (e.g., pixels) */
+  width: 640;
+  height: 480; 
 }
 .App {
   text-align: center;

@@ -2650,13 +2650,15 @@ const drawPath = (ctx, points, closePath) => {
     if (closePath) {
         region.closePath();
     }
-    ctx.strokeStyle = "aqua";
+    ctx.strokeStyle = "blue";
     ctx.stroke(region);
 }
 export const drawMesh = (predictions, ctx) => {
+    // ctx.fillStyle = "#FF0000"; // Set fill color to red
+    // ctx.fillRect(350, 150, 200, 100);
 
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    console.log("started drawing")
+    //console.log("started drawing")
     if (predictions.length > 0) {
 
         predictions.forEach((prediction) => {
@@ -2679,7 +2681,7 @@ export const drawMesh = (predictions, ctx) => {
                 //console.log(x,y) ;
                 ctx.beginPath();
                 ctx.arc(x, y, 1, 0, 3 * Math.PI);
-                ctx.fillStyle = "aqua";
+                ctx.fillStyle = "pink";
                 ctx.fill();
             }
         } catch (error) {
@@ -2687,6 +2689,6 @@ export const drawMesh = (predictions, ctx) => {
         }
         });
     }
-    console.log("drawing complete")
+    //console.log("drawing complete")
 }
 

@@ -1,9 +1,4 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'await facemesh.load({
-
-import { useState, useRef ,useEffect} from 'react'
+import { useRef, useEffect } from 'react'
 import * as tf from "@tensorflow/tfjs"
 import * as facemesh from "@tensorflow-models/facemesh"
 import Webcam from "react-webcam"
@@ -22,21 +17,22 @@ function App() {
       webcamRef.current.video.readyState === 4
     ) {
       const video = webcamRef.current.video;
-      const videoWidth = webcamRef.current.videoWidth;
-      const videoHeight = webcamRef.current.videoHeight;
+      const videoWidth = webcamRef.current.video.clientWidth;
+      const videoHeight = webcamRef.current.video.clientHeight  ;
 
       webcamRef.current.video.width = videoWidth;
       webcamRef.current.video.height = videoHeight;
 
-      canvaRef.current.width = videoWidth;
-      canvaRef.current.height = videoHeight;
-
+      canvaRef.current.width = videoWidth ;
+      canvaRef.current.height = videoHeight ;
+      //console.log(videoWidth,videoHeight)
+      //console.log(webcamRef.current,webcamRef.current);
       const face = await net.estimateFaces(video);
       //console.log(face);
-      const ctx = canvaRef.current.getContext("2d") ;
-      console.log(ctx) ;
+      const ctx = canvaRef.current.getContext("2d");
+      //console.log(ctx) ;
       drawMesh(face, ctx);
-//      drawMesh(face,ctx);
+      //drawMesh(face,ctx);
     }
   };
 
@@ -53,29 +49,20 @@ function App() {
   }
 
 
-  useEffect(()=>{runFaceMesh()}, []);
+  useEffect(() => { runFaceMesh() }, []);
+
   return (
     <div className='App'>
       <header className='App-header'>
-
-      <Webcam
-        ref={webcamRef}
-        style={{
-          position: 'absolute',
-          marginLeft: "auto",
-          marginRight: "auto",
-          left: 0,
-          right: 0,
-          textAlign: "center",
-          zIndex: 9,
-          width: 640,
-          height: 480
-        }}
-      />
-      <canvas 
-        ref={canvaRef}
+        <Webcam
+          className='webcam'
+          ref={webcamRef}
+          
         />
-        </header>
+        <canvas
+          ref={canvaRef}
+        />
+      </header>
     </div>
   )
 }
